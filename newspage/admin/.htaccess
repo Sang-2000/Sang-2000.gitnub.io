@@ -1,0 +1,26 @@
+#   Tập tin .htaccess (hypertext access) là một file có ở thư mục gốc của các hostting và do apache quản lý, cấp quyền
+
+# Bảo vệ file .htaccess
+<Files .htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
+ 
+# Rewrite url
+RewriteEngine on
+# 1 tham số
+RewriteRule ^([a-zA-Z0-9_-]+)$ index.php?tab=$1
+RewriteRule ^([a-zA-Z0-9_-]+)/$ index.php?tab=$1
+# 2 tham số
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ index.php?tab=$1&ac=$2
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/$ index.php?tab=$1&ac=$2
+# 3 tham số
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ index.php?tab=$1&ac=$2&id=$3
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/$ index.php?tab=$1&ac=$2&id=$3
+
+# Url phân trang bài viết
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ index.php?tab=$1&page=$2
+RewriteRule ^([a-zA-Z0-9_-]+)&page=([a-zA-Z0-9_-]+)$ index.php?tab=$1&page=$2
+
+
+#   Chú ý: Internal Server Error - Máy chủ gặp lỗi nội bộ hoặc định cấu hình sai và không thể hoàn thành yêu cầu của bạn 
